@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  webapi:
+    build: ./WebAPI
+    volumes:
+      - ./WebAPI:/usr/src/app
+    ports:
+      - "5001-5010:80"
+  webapp:
+    build: ./WebApp
+    volumes:
+      - ./WebApp:/app
+    ports:
+      - "5000:80"
+    depends_on:
+      - webapi
