@@ -16,7 +16,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: hpa-webapi
-        image: ezhar/webapi:9
+        image: ezhar/webapi:latest
         resources:
           requests:
             cpu: 100m
@@ -59,7 +59,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: hpa-webapp
-        image: ezhar/webapp:10
+        image: ezhar/webapp:latest
         resources:
           requests:
             cpu: 100m
