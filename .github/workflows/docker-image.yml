@@ -36,21 +36,18 @@ jobs:
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/webapi:latest
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/webapp:latest
         
-
-deploy:
-
-  needs: [build-and-push-image]
-  runs-on: ubuntu-latest
-  steps:
-  -
-    # Install SSH key for deployment to Linux server
-    name: Install SSH key
-    uses: webfactory/ssh-agent@v0.5.0
-    with:
-      ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-  -
-    # checking and see the deploy file
-    name: cat deploy file
-    run: |
-      ssh ${{ secrets.USER }}@${{ secrets.IP }} "cd /home/ubuntu/ICO-DAT/src && cat deploy.sh"
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    -
+      # Install SSH key for deployment to Linux server
+      name: Install SSH key
+      uses: webfactory/ssh-agent@v0.5.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    -
+      # checking and see the deploy file
+      name: cat deploy file
+      run: |
+        ssh ${{ secrets.USER }}@${{ secrets.IP }} "cd /home/ubuntu/ICO-DAT/src && cat deploy.sh"
   
